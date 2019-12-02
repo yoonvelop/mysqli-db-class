@@ -37,10 +37,11 @@ class Database
         $this->mysqli->close();
     }
 
+
+    // Execute query
     public function runQuery($query)
     {
         $result = $this->mysqli->query($query);
-//        echo $query;
 
         if (!$result) { // Mysql 오류
             $errno = mysqli_errno($this->mysqli);
@@ -119,6 +120,7 @@ class Database
         }
     }
 
+    //Check for table existence
     public function tableExists($table)
     {
         $tables = $this->mysqli->query('SHOW TABLES FROM ' . DB_NAME . ' LIKE "' . $table . '"');
@@ -135,6 +137,7 @@ class Database
         }
     }
 
+    // return last insert id
     public function lastInsertId()
     {
         return mysqli_insert_id($this->mysqli);
