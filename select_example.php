@@ -9,7 +9,10 @@ $board = new Board($db);
 
 $board_idx = (isset($_GET['board_idx'])) ? $_GET['board_idx'] : null;
 
-if($board_idx!=null) {
-    $result = $board->select_board($board_idx);
-    echo json_encode($result);
+$result = $board->select_board($board_idx);
+
+if ($result['isExist']) {  // success
+    echo json_encode($result['data']);
+} else { // fail
+    echo json_encode(array("massage" => "fail"));
 }

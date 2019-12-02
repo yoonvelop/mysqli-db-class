@@ -32,7 +32,10 @@ class Board
      */
     function select_board($board_idx)
     {
-        return $this->conn->select($this->table_name, '*', $where = "board_idx = " . $board_idx);
+        // if $board_idx==null => select all
+        $where = $board_idx!=null?"board_idx = " . $board_idx:null;
+
+        return $this->conn->select($this->table_name, '*', $where);
     }
 
 
