@@ -38,5 +38,10 @@ class Board
         return $this->conn->select($this->table_name, '*', $where);
     }
 
+    function update_board($data = array()){
+        $where = " board_idx = " . $data['board_idx'];
+        unset($data['board_idx']);
+        return $this->conn->update($this->table_name, $data, $where);
+    }
 
 }
